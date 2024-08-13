@@ -13,10 +13,13 @@ function reconstructUrl({url}:{url:string[]}){
 
 const page = async ({params}: PageProps) => {
     const reconstructedUrl = reconstructUrl({url : params.url as string[]})
-//   await ragChat.context.add({
-//     type : "html",
-//     source : 
-//   })
+
+    
+  await ragChat.context.add({
+    type : "html",
+    source : reconstructedUrl,
+    config: {chunkOverlap : 50,chunkSize: 200}
+  })
   return (
     <div>
       Hello World
