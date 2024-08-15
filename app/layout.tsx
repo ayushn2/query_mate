@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(inter.className, "min-h-screen antialiased")}>
+      
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="NewYork"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="h-screen dark text-foreground bg-background">
+              {children}
+            </main>
+        </ThemeProvider>
+        
+        
+      </body>
     </html>
   );
 }
